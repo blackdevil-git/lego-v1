@@ -96,7 +96,7 @@ if __name__ == '__main__':
 
         move(hub)
 
-        while 0==0:
+        while True:
             sleep(1)
        
     finally:
