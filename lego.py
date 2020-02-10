@@ -39,13 +39,8 @@ def demo_led_colors(movehub):
         movehub.led.set_color(color)
         sleep(1)
 
-if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
-    hub = MoveHub()
 
-    try:
-        
-        def callback(clr, distance):
+def callback(clr, distance):
             print("Color: %s / Distance: %s" % (clr, distance))
             if distance <= 2:
                 hub.led.set_color(COLOR_RED)
@@ -59,8 +54,13 @@ if __name__ == '__main__':
             else:
                 stop(hub)
                 hub.led.set_color(COLOR_BLACK)
-                
 
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
+    hub = MoveHub()
+
+    try:
+        
         hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
         #move(hub)
