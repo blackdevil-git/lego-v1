@@ -20,6 +20,20 @@ def stop(movehub):
     movehub.motor_external.stop()
     #movehub.motor_AB.stop()
 
+def demo_led_colors(movehub):
+    # LED colors demo
+    log.info("LED colors demo")
+
+    # We get a response with payload and port, not x and y here...
+    def colour_callback(**named):
+        log.info("LED Color callback: %s", named)
+
+    movehub.led.subscribe(colour_callback)
+    for color in list(COLORS.keys())[1:] + [COLOR_BLACK]:
+        log.info("Setting LED color to: %s", COLORS[color])
+        movehub.led.set_color(color)
+        sleep(1)
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     hub = MoveHub()
@@ -35,10 +49,11 @@ if __name__ == '__main__':
 
         hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
-        move(hub)
+        demo_led_colors(hub)
 
-        while True:
-            sleep(1)
+        #while True:
+
+        #    sleep(1)
        
     finally:
         hub.vision_sensor.unsubscribe(callback)
