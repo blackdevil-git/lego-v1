@@ -4,7 +4,7 @@ from time import sleep
 
 from pylgbst import logging
 from pylgbst.hub import MoveHub
-from pylgbst.peripherals import EncodedMotor, TiltSensor, Current, Voltage, COLORS, COLOR_BLACK
+from pylgbst.peripherals import EncodedMotor, TiltSensor, Current, Voltage, COLORS, COLOR_BLACK, COLOR_RED, COLOR_BLUE
 from pylgbst.hub import VisionSensor
 
 log = logging.getLogger("demo")
@@ -39,21 +39,22 @@ if __name__ == '__main__':
     hub = MoveHub()
 
     try:
+        
         def callback(clr, distance):
             print("Color: %s / Distance: %s" % (clr, distance))
-            #if distance < 5:
-                #stop(hub)
-            #else:
+            if distance < 5:
+                hub.led.set_color(COLOR_RED)
+            elif distance > 5:
+                hub.led.set_color(COLOR_BLUE)
             #    move(hub)
                 
 
         hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
-        demo_led_colors(hub)
+        #demo_led_colors(hub)
 
-        #while True:
-
-        #    sleep(1)
+        while True:
+            sleep(1)
        
     finally:
         hub.vision_sensor.unsubscribe(callback)
