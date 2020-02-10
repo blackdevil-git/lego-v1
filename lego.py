@@ -50,7 +50,7 @@ if __name__ == '__main__':
             if distance <= 2:
                 hub.led.set_color(COLOR_RED)
                 stop(hub)
-            if distance <= 5:
+            elif distance <= 5:
                 hub.led.set_color(COLOR_YELLOW)
                 moveslow(hub)
             elif distance > 5:
