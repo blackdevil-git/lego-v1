@@ -56,7 +56,7 @@ def callback(clr, distance):
                 hub.led.set_color(COLOR_BLACK)
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.ERROR)
     hub = MoveHub()
 
     try:
@@ -66,6 +66,7 @@ if __name__ == '__main__':
         #move(hub)
 
         while True:
+            hub.vision_sensor.
             sleep(1)
        
     finally:
