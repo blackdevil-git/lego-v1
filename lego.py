@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
         hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
-        #demo_led_colors(hub)
+        hub.led.set_color(COLOR_BLUE)
 
         while True:
             sleep(1)
