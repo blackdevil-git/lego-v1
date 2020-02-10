@@ -66,7 +66,6 @@ if __name__ == '__main__':
         #move(hub)
 
         while True:
-            hub.vision_sensor.
             sleep(1)
        
     finally:
