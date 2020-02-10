@@ -63,7 +63,7 @@ def connection_from_url(url):
 
 def move(movehub):
     #log.info("Motors movement demo: angled")
-    movehub.motor_external.start_speed(0.8)
+    movehub.motor_external.start_speed(0.7)
     #movehub.motor_AB.start_speed(0.2, 0.2)
 
 def stop(movehub):
