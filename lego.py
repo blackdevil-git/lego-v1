@@ -13,7 +13,7 @@ data_distance = 0
 
 def move(movehub):
     #log.info("Motors movement demo: angled")
-    movehub.motor_external.start_speed(0.7)
+    movehub.motor_external.start_speed(0.3)
     #movehub.motor_AB.start_speed(0.2, 0.2)
 
 def stop(movehub):
@@ -46,12 +46,13 @@ if __name__ == '__main__':
                 hub.led.set_color(COLOR_RED)
             elif distance > 5:
                 hub.led.set_color(COLOR_BLUE)
-            #    move(hub)
+            else:
+                hub.led.set_color(COLOR_BLACK)
                 
 
         hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
-        hub.led.set_color(COLOR_BLUE)
+        move(hub)
 
         while True:
             sleep(1)
