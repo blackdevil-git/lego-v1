@@ -9,7 +9,7 @@ from pylgbst import get_connection_auto
 from pylgbst.peripherals import EncodedMotor, TiltSensor, Current, Voltage, COLORS, COLOR_BLACK, COLOR_RED, COLOR_BLUE, COLOR_YELLOW
 from pylgbst.hub import VisionSensor
 
-hub = MoveHub()
+#hub = MoveHub()
 
 log = logging.getLogger("autobot")
 
@@ -47,20 +47,25 @@ def demo_led_colors(movehub):
 def callback(clr, distance):
             print("Color: %s / Distance: %s" % (clr, distance))
             if distance <= 2:
-                hub.led.set_color(COLOR_RED)
-                stop(hub)
+                #hub.led.set_color(COLOR_RED)
+                #stop(hub)
+                sleep(1)
             elif distance <= 5:
-                hub.led.set_color(COLOR_YELLOW)
-                moveslow(hub)
+                #hub.led.set_color(COLOR_YELLOW)
+                #moveslow(hub)
+                sleep(1)
             elif distance > 5:
-                hub.led.set_color(COLOR_BLUE)
-                movefast(hub)
+                #hub.led.set_color(COLOR_BLUE)
+                #movefast(hub)
+                sleep(1)
             else:
-                stop(hub)
-                hub.led.set_color(COLOR_BLACK)
+                #stop(hub)
+                #hub.led.set_color(COLOR_BLACK)
+                sleep(1)
 
 def connect():
-    hub.connection.connect()
+    #hub.connection.connect()
+    sleep(1)
 
 
 def main():
@@ -92,8 +97,8 @@ def main():
             sleep(5)
        
     finally:
-        hub.vision_sensor.unsubscribe(callback)
-        hub.disconnect()
+        #hub.vision_sensor.unsubscribe(callback)
+        #hub.disconnect()
         conn.disconnect()
 
 if __name__ == '__main__':
