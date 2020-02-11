@@ -66,6 +66,8 @@ def connect():
     #hub.connection.connect()
     sleep(1)
 
+def button_callback(is_pressed):
+    print("Btn pressed: %s" % is_pressed)
 
 def main():
     
@@ -75,9 +77,13 @@ def main():
 
         hub = MoveHub()
 
+         hub.button.subscribe(button_callback)
+
         #hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
         while True:
+
+           
 
             if hub.connection.is_alive():
                 print("hub 2 connected!")
