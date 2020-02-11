@@ -10,9 +10,9 @@ from pylgbst.hub import VisionSensor
 
 log = logging.getLogger("autobot")
 
-data_distance = 0
+data_distance = None
 
-motor_state = 0
+motor_state = None
 
 def movefast(movehub):
     #log.info("Motors movement demo: angled")
