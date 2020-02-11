@@ -9,7 +9,7 @@ from pylgbst.hub import VisionSensor
 
 hub = MoveHub()
 
-log = logging.getLogger("demo")
+log = logging.getLogger("autobot")
 
 data_distance = 0
 
@@ -62,15 +62,13 @@ def connect():
 
 
 def main():
-    logging.basicConfig(level=logging.ERROR)
+    logging.basicConfig(level=logging.INFO)
     try:
 
         if not hub.connection.is_alive:
             connect()
                 
         hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
-
-        #move(hub)
 
         while True:
             if not hub.connection.is_alive:
