@@ -77,7 +77,7 @@ def main():
 
         hub = MoveHub()
 
-         hub.button.subscribe(button_callback)
+        hub.button.subscribe(button_callback)
 
         #hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
