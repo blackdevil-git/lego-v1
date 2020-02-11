@@ -103,7 +103,8 @@ def main():
 
     except:
         print("ex!")
-       
+        main()
+        
     finally:
         #hub.vision_sensor.unsubscribe(callback)
         #hub.disconnect()
