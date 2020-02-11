@@ -70,11 +70,8 @@ def button_callback(is_pressed):
     global motor_state
     print("Btn pressed: %s" % is_pressed)
     if is_pressed == 2:
-        if motor_state == 0:
-            motor_state = 1
-        else:
-            motor_state = 0
-
+        motor_state = 1
+        
 def main():
     
     logging.basicConfig(level=logging.INFO)
@@ -92,15 +89,11 @@ def main():
 
         while True:
 
-            if motor_state ==  0:
-                stop(hub)
-            else:
-                moveslow(hub)
+            if motor_state ==  1:
+                hub.button.unsubscribe()
+                hub.disconnect()
+                exit
 
-            if hub.connection.is_alive():
-                print("hub 2 connected!")
-            else:
-                print("hub 2 disconnected!")
 
             #if not hub.connection.is_alive():
             #    connect()
@@ -108,7 +101,7 @@ def main():
             #    print("Reconnection!")
             #else:
             #    print("Connected!")
-            sleep(5)
+            sleep(3)
        
     finally:
         #hub.vision_sensor.unsubscribe(callback)
