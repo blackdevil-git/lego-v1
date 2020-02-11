@@ -14,13 +14,13 @@ data_distance = 0
 
 def movefast(movehub):
     #log.info("Motors movement demo: angled")
-    movehub.motor_external.start_speed(0.7)
-    #movehub.motor_AB.start_speed(0.2, 0.2)
+    movehub.motor_external.start_speed(0.3)
+    movehub.motor_AB.start_speed(0.3, 0.3)
 
 def moveslow(movehub):
     #log.info("Motors movement demo: angled")
-    movehub.motor_external.start_speed(0.3)
-    #movehub.motor_AB.start_speed(0.2, 0.2)
+    movehub.motor_external.start_speed(0.1)
+    movehub.motor_AB.start_speed(0.1, 0.1)
 
 def stop(movehub):
     movehub.motor_external.stop()
