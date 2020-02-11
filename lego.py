@@ -101,8 +101,8 @@ def main():
             #    print("Connected!")
             sleep(3)
 
-    except expression as identifier:
-        print(expression)
+    except:
+        print("ex!")
        
     finally:
         #hub.vision_sensor.unsubscribe(callback)
