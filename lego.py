@@ -74,7 +74,7 @@ def main():
 
         hub2 = Hub(conn)
 
-        hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
+        #hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
         while True:
 
