@@ -55,7 +55,8 @@ def callback(clr, distance):
                 stop(hub)
                 hub.led.set_color(COLOR_BLACK)
 
-if __name__ == '__main__':
+
+def main()
     logging.basicConfig(level=logging.ERROR)
     hub = MoveHub()
 
@@ -71,4 +72,8 @@ if __name__ == '__main__':
     finally:
         hub.vision_sensor.unsubscribe(callback)
         hub.disconnect()
+
+if __name__ == '__main__':
+    main()
+    
         
