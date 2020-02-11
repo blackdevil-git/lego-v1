@@ -4,7 +4,6 @@ from time import sleep
 
 from pylgbst import logging
 from pylgbst.hub import MoveHub
-from pylgbst.hub import Hub
 from pylgbst import get_connection_auto
 from pylgbst.peripherals import EncodedMotor, TiltSensor, Current, Voltage, COLORS, COLOR_BLACK, COLOR_RED, COLOR_BLUE, COLOR_YELLOW
 from pylgbst.hub import VisionSensor
@@ -71,19 +70,16 @@ def connect():
 def main():
     
     logging.basicConfig(level=logging.INFO)
-    conn = get_connection_auto()  # ! don't put this into `try` block
-
-
- 
+  
     try:
 
-        hub2 = Hub(conn)
+        hub = MoveHub()
 
         #hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
         while True:
 
-            if hub2.connection.is_alive():
+            if hub.connection.is_alive():
                 print("hub 2 connected!")
             else:
                 print("hub 2 disconnected!")
@@ -99,7 +95,7 @@ def main():
     finally:
         #hub.vision_sensor.unsubscribe(callback)
         #hub.disconnect()
-        conn.disconnect()
+        hub.disconnect()
 
 if __name__ == '__main__':
     main()
