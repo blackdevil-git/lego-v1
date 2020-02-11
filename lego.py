@@ -4,10 +4,12 @@ from time import sleep
 
 from pylgbst import logging
 from pylgbst.hub import MoveHub
+from pylgbst.hub import Hub
+from pylgbst import get_connection_auto
 from pylgbst.peripherals import EncodedMotor, TiltSensor, Current, Voltage, COLORS, COLOR_BLACK, COLOR_RED, COLOR_BLUE, COLOR_YELLOW
 from pylgbst.hub import VisionSensor
 
-hub = MoveHub()
+mhub = MoveHub()
 
 log = logging.getLogger("autobot")
 
@@ -45,42 +47,45 @@ def demo_led_colors(movehub):
 def callback(clr, distance):
             print("Color: %s / Distance: %s" % (clr, distance))
             if distance <= 2:
-                hub.led.set_color(COLOR_RED)
-                stop(hub)
+                mhub.led.set_color(COLOR_RED)
+                stop(mhub)
             elif distance <= 5:
-                hub.led.set_color(COLOR_YELLOW)
-                moveslow(hub)
+                mhub.led.set_color(COLOR_YELLOW)
+                moveslow(mhub)
             elif distance > 5:
-                hub.led.set_color(COLOR_BLUE)
-                movefast(hub)
+                mhub.led.set_color(COLOR_BLUE)
+                movefast(mhub)
             else:
-                stop(hub)
-                hub.led.set_color(COLOR_BLACK)
+                stop(mhub)
+                mhub.led.set_color(COLOR_BLACK)
 
 def connect():
-    hub.connection.connect()
+    mhub.connection.connect()
 
 
 def main():
     logging.basicConfig(level=logging.INFO)
-    try:
+    conn = get_connection_auto()  # ! don't put this into `try` block
 
-        if not hub.connection.is_alive:
-            connect()
+    try:
+        try:
+            hub = Hub(conn)
+        finally:
+            conn.disconnect()
                 
-        hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
+        mhub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
         while True:
             if not hub.connection.is_alive:
                 connect()
-                hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
+                mhub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
                 print("Reconnection!")
             else:
                 print("Connected!")
             sleep(5)
        
     finally:
-        hub.vision_sensor.unsubscribe(callback)
+        mhub.vision_sensor.unsubscribe(callback)
         hub.disconnect()
 
 if __name__ == '__main__':
