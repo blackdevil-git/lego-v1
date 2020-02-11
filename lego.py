@@ -67,6 +67,7 @@ def connect():
     sleep(1)
 
 def button_callback(is_pressed):
+    global motor_state
     print("Btn pressed: %s" % is_pressed)
     if is_pressed == 2:
         if motor_state == 0:
@@ -78,10 +79,11 @@ def main():
     
     logging.basicConfig(level=logging.INFO)
 
-    motor_state = 0
+    global motor_state
+   
 
     try:
-
+        motor_state = 0
         hub = MoveHub()
 
         hub.button.subscribe(button_callback)
