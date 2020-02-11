@@ -73,6 +73,10 @@ def main():
         while True:
             if not hub.connection.is_alive:
                 connect()
+                hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
+                log.info("Reconnection!")
+            else:
+                log.info("Connected!")
             sleep(5)
        
     finally:
