@@ -8,11 +8,11 @@ from pylgbst import get_connection_auto
 from pylgbst.peripherals import EncodedMotor, TiltSensor, Current, Voltage, COLORS, COLOR_BLACK, COLOR_RED, COLOR_BLUE, COLOR_YELLOW
 from pylgbst.hub import VisionSensor
 
-#hub = MoveHub()
-
 log = logging.getLogger("autobot")
 
 data_distance = 0
+
+motor_state = 0
 
 def movefast(movehub):
     #log.info("Motors movement demo: angled")
@@ -68,6 +68,11 @@ def connect():
 
 def button_callback(is_pressed):
     print("Btn pressed: %s" % is_pressed)
+    if is_pressed:
+        if motor_state == 0:
+            motor_state = 1
+        else:
+            motor_state = 0
 
 def main():
     
@@ -83,7 +88,10 @@ def main():
 
         while True:
 
-           
+            if motor_state ==  0:
+                stop(hub)
+            else:
+                moveslow(hub)
 
             if hub.connection.is_alive():
                 print("hub 2 connected!")
