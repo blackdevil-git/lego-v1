@@ -7,6 +7,8 @@ from pylgbst.hub import MoveHub
 from pylgbst.peripherals import EncodedMotor, TiltSensor, Current, Voltage, COLORS, COLOR_BLACK, COLOR_RED, COLOR_BLUE, COLOR_YELLOW
 from pylgbst.hub import VisionSensor
 
+hub = MoveHub()
+
 log = logging.getLogger("demo")
 
 data_distance = 0
@@ -55,24 +57,31 @@ def callback(clr, distance):
                 stop(hub)
                 hub.led.set_color(COLOR_BLACK)
 
+def connect():
+    hub.connection.connect()
+
 
 def main():
     logging.basicConfig(level=logging.ERROR)
     try:
-        
+
+        if not hub.connection.is_alive:
+            connect()
+                
         hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
         #move(hub)
 
         while True:
-            sleep(1)
+            if not hub.connection.is_alive:
+                connect()
+            sleep(5)
        
     finally:
         hub.vision_sensor.unsubscribe(callback)
         hub.disconnect()
 
 if __name__ == '__main__':
-    hub = MoveHub()
     main()
     
         
