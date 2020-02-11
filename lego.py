@@ -57,10 +57,8 @@ def callback(clr, distance):
                 hub.led.set_color(COLOR_BLACK)
 
 
-def main()
+def main():
     logging.basicConfig(level=logging.ERROR)
-    hub = MoveHub()
-
     try:
         
         hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
@@ -75,6 +73,7 @@ def main()
         hub.disconnect()
 
 if __name__ == '__main__':
+    hub = MoveHub()
     main()
     
         
