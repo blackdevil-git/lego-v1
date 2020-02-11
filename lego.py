@@ -92,8 +92,6 @@ def main():
             if motor_state ==  1:
                 hub.button.unsubscribe()
                 hub.disconnect()
-                exit
-
 
             #if not hub.connection.is_alive():
             #    connect()
@@ -102,6 +100,9 @@ def main():
             #else:
             #    print("Connected!")
             sleep(3)
+
+    except expression as identifier:
+        print(expression)
        
     finally:
         #hub.vision_sensor.unsubscribe(callback)
