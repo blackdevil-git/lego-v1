@@ -21,8 +21,8 @@ def movefast(movehub):
 
 def moveslow(movehub):
     #log.info("Motors movement demo: angled")
-    movehub.motor_external.start_speed(0.1)
-    movehub.motor_AB.start_speed(0.1, 0.1)
+    #movehub.motor_external.start_speed(0.1)
+    movehub.motor_A.start_speed(0.1, 0.2)
 
 def stop(movehub):
     movehub.motor_external.stop()
@@ -88,6 +88,8 @@ def main():
         #hub.vision_sensor.subscribe(callback, mode=VisionSensor.COLOR_DISTANCE_FLOAT)
 
         while True:
+
+            moveslow(movehub):
 
             if motor_state ==  1:
                 hub.button.unsubscribe()
