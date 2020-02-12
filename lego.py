@@ -70,7 +70,7 @@ def button_callback(is_pressed):
     global motor_state
     print("Btn pressed: %s" % is_pressed)
     if is_pressed == 2:
-        motor_state = 1
+        motor_state = 2
         
 def main():
     
@@ -105,6 +105,7 @@ def main():
 
     except:
         print("ex!")
+        sleep(5)
         main()
         
     finally:
