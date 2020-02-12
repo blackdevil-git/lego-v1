@@ -21,8 +21,8 @@ def movefast(movehub):
 
 def moveslow(movehub):
     #log.info("Motors movement demo: angled")
-    #movehub.motor_external.start_speed(0.1)
-    movehub.motor_A.start_speed(0.3)
+    movehub.motor_external.start_speed(0.2)
+    #movehub.motor_A.start_speed(0.3)
 
 def stop(movehub):
     movehub.motor_external.stop()
