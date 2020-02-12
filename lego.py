@@ -89,11 +89,11 @@ def main():
 
         while True:
 
-            moveslow(movehub)
+            moveslow(hub)
 
-            if motor_state ==  1:
-                hub.button.unsubscribe()
-                hub.disconnect()
+            #if motor_state ==  1:
+            #    hub.button.unsubscribe()
+            #    hub.disconnect()
 
             #if not hub.connection.is_alive():
             #    connect()
