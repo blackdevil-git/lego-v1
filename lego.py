@@ -89,7 +89,7 @@ def main():
 
         while True:
 
-            moveslow(movehub):
+            moveslow(movehub)
 
             if motor_state ==  1:
                 hub.button.unsubscribe()
